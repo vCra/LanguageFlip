@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Language Flip</string>
+    <string name="action_settings">Settings</string>
+    <string name="no_phrase_book">They are currently no phrase books - why not make one?</string>
+    <string name="empty_not_saved">Not saved</string>
+    <string name="button_save">Save</string>
+</resources>
