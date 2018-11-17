@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PhraseBook.Create.NewPhraseBookActivity" />
+        <activity android:name=".PhraseBook.Detail.PhraseBookDetailActivity"></activity>
     </application>
 
 </manifest>

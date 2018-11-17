@@ -4,4 +4,11 @@
     <string name="no_phrase_book">They are currently no phrase books - why not make one?</string>
     <string name="empty_not_saved">Not saved</string>
     <string name="button_save">Save</string>
+    <string name="remove">Remove</string>
+    <string name="rename">Rename</string>
+    <string name="areyousure">Are you sure?</string>
+    <string name="sure">I\'m sure</string>
+    <string name="removephrasebooktext">If you remove this Phrasebook, then all phrases within it will be removed.</string>
+    <string name="newpb">New PhraseBook</string>
+    <string name="name">Name</string>
 </resources>

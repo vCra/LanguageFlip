@@ -1,4 +1,4 @@
-package io.vcra.apps.languageflip.PhraseBook.DAO;
+package io.vcra.apps.languageflip.data.DAO;
 
 /*
  * Copyright (C) 2017 Google Inc.
@@ -19,9 +19,6 @@ package io.vcra.apps.languageflip.PhraseBook.DAO;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
-import io.vcra.apps.languageflip.PhraseBook.DAO.PhraseBook;
-import io.vcra.apps.languageflip.PhraseBook.DAO.PhraseBookDAO;
-import io.vcra.apps.languageflip.PhraseBook.DAO.PhraseRoomDB;
 
 import java.util.List;
 

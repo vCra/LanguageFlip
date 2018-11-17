@@ -1,4 +1,4 @@
-package io.vcra.apps.languageflip.PhraseBook.DAO;
+package io.vcra.apps.languageflip.data.DAO;
 
 
 

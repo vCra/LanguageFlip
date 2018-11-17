@@ -1,4 +1,4 @@
-package io.vcra.apps.languageflip.PhraseBook.DAO;
+package io.vcra.apps.languageflip.data;
 
 /*
  * Copyright (C) 2017 Google Inc.
@@ -17,32 +17,34 @@ package io.vcra.apps.languageflip.PhraseBook.DAO;
  */
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import io.vcra.apps.languageflip.data.phrasebook.PhraseBook;
+import io.vcra.apps.languageflip.data.phrasebook.PhraseBookDAO;
+
 /**
  * This is the backend. The database. This used to be done by the OpenHelper.
  * The fact that this has very few comments emphasizes its coolness.
  */
 
-@Database(entities = {PhraseBook.class}, version = 1)
-public abstract class PhraseRoomDB extends RoomDatabase {
+@android.arch.persistence.room.Database(entities = {PhraseBook.class}, version = 1)
+public abstract class Database extends RoomDatabase {
 
     public abstract PhraseBookDAO wordDao();
 
     // marking the instance as volatile to ensure atomic access to the variable
-    private static volatile PhraseRoomDB INSTANCE;
+    private static volatile Database INSTANCE;
 
-    public static PhraseRoomDB getDatabase(final Context context) {
+    public static Database getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (PhraseRoomDB.class) {
+            synchronized (Database.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            PhraseRoomDB.class, "phrase_database")
+                            Database.class, "phrase_database")
                             // Wipes and rebuilds instead of migrating if no Migration object.
                             // Migration is not part of this codelab.
                             .fallbackToDestructiveMigration()
@@ -80,7 +82,7 @@ public abstract class PhraseRoomDB extends RoomDatabase {
 
         private final PhraseBookDAO mDao;
 
-        PopulateDbAsync(PhraseRoomDB db) {
+        PopulateDbAsync(Database db) {
             mDao = db.wordDao();
         }
 

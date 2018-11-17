@@ -1,45 +1,36 @@
 package io.vcra.apps.languageflip.PhraseBook.List;
 
-/*
- * Copyright (C) 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 import io.vcra.apps.languageflip.PhraseBook.Create.NewPhraseBookActivity;
-import io.vcra.apps.languageflip.PhraseBook.DAO.PhraseBook;
-import io.vcra.apps.languageflip.PhraseBook.DAO.PhraseBookListAdapter;
-import io.vcra.apps.languageflip.PhraseBook.DAO.PhraseBookViewModel;
+import io.vcra.apps.languageflip.data.phrasebook.PhraseBook;
+import io.vcra.apps.languageflip.data.phrasebook.PhraseBookListAdapter;
+import io.vcra.apps.languageflip.data.phrasebook.PhraseBookViewModel;
 import io.vcra.apps.languageflip.R;
+import io.vcra.apps.languageflip.tools.RecyclerItemClickListener;
 
 import java.util.List;
 
 
 public class PhraseBookListActivity extends AppCompatActivity {
 
-    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    public static final int NEW_PHRASE_ACTIVITY_REQUEST_CODE = 1;
 
     private PhraseBookViewModel mPhraseBookViewModel;
 
@@ -52,13 +43,61 @@ public class PhraseBookListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        // Get a new or existing ViewModel from the ViewModelProvider.
+        mPhraseBookViewModel = ViewModelProviders.of(this).get(PhraseBookViewModel.class);
+
+
+        final RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final PhraseBookListAdapter adapter = new PhraseBookListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addOnItemTouchListener(
+            new RecyclerItemClickListener(PhraseBookListActivity.this, recyclerView, new RecyclerItemClickListener.OnItemClickListener(){
+                @Override public void onItemClick(View view, int position){
+                    Log.i("lf.pb.l", "Button clicked with ID of "+String.valueOf(adapter.getFromPosition(position).getId()));
+                }
 
-        // Get a new or existing ViewModel from the ViewModelProvider.
-        mPhraseBookViewModel = ViewModelProviders.of(this).get(PhraseBookViewModel.class);
+                @Override
+                public void onLongItemClick(View view, final int position) {
+                    PopupMenu popup = new PopupMenu(PhraseBookListActivity.this, view);
+                    popup.getMenuInflater().inflate(R.menu.phrase_book_list_item_menu, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            //TODO: Do this by not using the titles but instead the ID's
+                            if (item.getTitle().equals("Remove")) {
+                                Log.i("lf.pb.l", "Remove button pressed for " + String.valueOf(adapter.getFromPosition(position).getId()));
+
+                                AlertDialog alertDialog = new AlertDialog.Builder(PhraseBookListActivity.this).create();
+                                alertDialog.setTitle(getString(R.string.areyousure));
+                                alertDialog.setMessage(getString(R.string.removephrasebooktext));
+                                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.sure),
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                if (which == AlertDialog.BUTTON_POSITIVE){
+                                                    mPhraseBookViewModel.remove(adapter.getFromPosition(position));
+                                                }
+                                            }
+                                        });
+                                alertDialog.show();
+                            } else if (item.getTitle().equals("Rename")) {
+                                Log.i("lf.pb.l", "Rename button pressed for " + String.valueOf(adapter.getFromPosition(position).getId()));
+
+                                AlertDialog alertDialog = new AlertDialog.Builder(PhraseBookListActivity.this).create();
+
+
+                            } else {
+                                Log.e("lf", "Context menu item selected which is not implemented for");
+                            }
+                            return true;
+                        }
+                    });
+                    popup.show();
+                }
+            })
+        );
+
+
 
         // Add an observer on the LiveData returned by getPhraseBooks.
         // The onChanged() method fires when the observed data changes and the activity is
@@ -67,7 +106,7 @@ public class PhraseBookListActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final List<PhraseBook> phraseBooks) {
                 // Update the cached copy of the words in the adapter.
-                adapter.setWords(phraseBooks);
+                adapter.setPhraseBooks(phraseBooks);
             }
         });
 
@@ -76,7 +115,7 @@ public class PhraseBookListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PhraseBookListActivity.this, NewPhraseBookActivity.class);
-                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+                startActivityForResult(intent, NEW_PHRASE_ACTIVITY_REQUEST_CODE);
             }
         });
     }
@@ -84,7 +123,7 @@ public class PhraseBookListActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             PhraseBook phraseBook = new PhraseBook(data.getStringExtra(NewPhraseBookActivity.EXTRA_REPLY));
             mPhraseBookViewModel.insert(phraseBook);
         } else {
