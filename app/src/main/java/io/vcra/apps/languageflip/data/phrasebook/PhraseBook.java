@@ -1,4 +1,4 @@
-package io.vcra.apps.languageflip.data.DAO;
+package io.vcra.apps.languageflip.data.phrasebook;
 
 
 
@@ -12,7 +12,9 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "phrasebook")
 public class PhraseBook {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @NonNull
     @ColumnInfo(name = "phrase")
     private String mPhrase;
@@ -24,5 +26,13 @@ public class PhraseBook {
     @NonNull
     public String getPhrase() {
         return this.mPhrase;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

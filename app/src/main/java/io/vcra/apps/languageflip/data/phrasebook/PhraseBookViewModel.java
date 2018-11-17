@@ -1,4 +1,4 @@
-package io.vcra.apps.languageflip.data.DAO;
+package io.vcra.apps.languageflip.data.phrasebook;
 
 /*
  * Copyright (C) 2017 Google Inc.
@@ -21,6 +21,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
 import java.util.List;
+
+import io.vcra.apps.languageflip.data.phrase.Phrase;
 
 /**
  * View Model to keep a reference to the word repository and
@@ -48,5 +50,9 @@ public class PhraseBookViewModel extends AndroidViewModel {
 
     public void insert(PhraseBook phraseBook) {
         mRepository.insert(phraseBook);
+    }
+
+    public void remove(PhraseBook phraseBook){
+        mRepository.remove(phraseBook);
     }
 }
