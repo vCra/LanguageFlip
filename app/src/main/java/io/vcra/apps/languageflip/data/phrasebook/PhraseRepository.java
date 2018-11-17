@@ -55,4 +55,16 @@ class PhraseRepository {
             return null;
         }
     }
+    private static class updateAsyncTask extends AsyncTask<PhraseBook, Void, Void> {
+
+        private PhraseBookDAO mAsyncTaskDao;
+        updateAsyncTask(PhraseBookDAO dao) {
+            mAsyncTaskDao = dao;
+        }
+        @Override
+        protected Void doInBackground(final PhraseBook... params) {
+            mAsyncTaskDao.delete(params[0]);
+            return null;
+        }
+    }
 }

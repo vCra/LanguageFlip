@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 import io.vcra.apps.languageflip.PhraseBook.Create.NewPhraseBookActivity;
@@ -80,12 +81,22 @@ public class PhraseBookListActivity extends AppCompatActivity {
                                             }
                                         });
                                 alertDialog.show();
-                            } else if (item.getTitle().equals("Rename")) {
+                            } else if (item.getTitle().equals(getString(R.string.rename))) {
                                 Log.i("lf.pb.l", "Rename button pressed for " + String.valueOf(adapter.getFromPosition(position).getId()));
-
-                                AlertDialog alertDialog = new AlertDialog.Builder(PhraseBookListActivity.this).create();
-
-
+                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(PhraseBookListActivity.this);
+                                alertDialog.setView(new EditText(PhraseBookListActivity.this));
+                                alertDialog.setTitle(R.string.rename_phrasebook);
+                                alertDialog.setMessage(R.string.rename_msg);
+                                AlertDialog alertDialog1 = alertDialog.create();
+                                alertDialog1.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.rename),
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                if (which == AlertDialog.BUTTON_POSITIVE){
+                                                    mPhraseBookViewModel.remove(adapter.getFromPosition(position));
+                                                }
+                                            }
+                                        });
+                                alertDialog1.show();
                             } else {
                                 Log.e("lf", "Context menu item selected which is not implemented for");
                             }

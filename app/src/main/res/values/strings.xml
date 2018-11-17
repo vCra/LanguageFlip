@@ -11,4 +11,8 @@
     <string name="removephrasebooktext">If you remove this Phrasebook, then all phrases within it will be removed.</string>
     <string name="newpb">New PhraseBook</string>
     <string name="name">Name</string>
+    <string name="rename_phrasebook">Rename PhraseBook</string>
+    <string name="rename_msg">What would you like to call your PhraseBook?</string>
+    <string name="rename">Rename</string>
+    <string name="rename">Rename</string>
 </resources>
