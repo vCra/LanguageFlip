@@ -9,12 +9,12 @@ import java.util.List;
 import io.vcra.apps.languageflip.data.LFDB;
 
 
-class PhraseRepository {
+class PhraseBookRepository {
 
     private PhraseBookDAO mPhraseBookDAO;
     private LiveData<List<PhraseBook>> mAllWords;
 
-    PhraseRepository(Application application) {
+    PhraseBookRepository(Application application) {
         LFDB db = LFDB.getDatabase(application);
         mPhraseBookDAO = db.phraseBookDAO();
         mAllWords = mPhraseBookDAO.getPhraseBooks();
@@ -29,6 +29,8 @@ class PhraseRepository {
     }
 
     void remove(PhraseBook... phraseBooks) { new removeAsyncTask(mPhraseBookDAO).execute(phraseBooks);}
+
+    void rename(PhraseBook phraseBook, String) { new updateAsyncTask(mPhraseBookDAO).execute(phraseBook);}
 
     private static class insertAsyncTask extends AsyncTask<PhraseBook, Void, Void> {
 
@@ -55,6 +57,7 @@ class PhraseRepository {
             return null;
         }
     }
+
     private static class updateAsyncTask extends AsyncTask<PhraseBook, Void, Void> {
 
         private PhraseBookDAO mAsyncTaskDao;
@@ -63,7 +66,7 @@ class PhraseRepository {
         }
         @Override
         protected Void doInBackground(final PhraseBook... params) {
-            mAsyncTaskDao.delete(params[0]);
+            mAsyncTaskDao.update(params[0]);
             return null;
         }
     }

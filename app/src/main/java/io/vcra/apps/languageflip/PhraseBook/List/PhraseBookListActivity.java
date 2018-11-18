@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 import io.vcra.apps.languageflip.PhraseBook.Create.NewPhraseBookActivity;
+import io.vcra.apps.languageflip.PhraseBook.Detail.PhraseBookDetailActivity;
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBook;
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBookListAdapter;
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBookViewModel;
@@ -55,7 +56,10 @@ public class PhraseBookListActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(
             new RecyclerItemClickListener(PhraseBookListActivity.this, recyclerView, new RecyclerItemClickListener.OnItemClickListener(){
                 @Override public void onItemClick(View view, int position){
-                    Log.i("lf.pb.l", "Button clicked with ID of "+String.valueOf(adapter.getFromPosition(position).getId()));
+                    PhraseBook pb = adapter.getFromPosition(position);
+                    Intent intent = new Intent(getBaseContext(), PhraseBookDetailActivity.class);
+                    intent.putExtra("PhraseBook", pb.getId());
+                    startActivity(intent);
                 }
 
                 @Override
