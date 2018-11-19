@@ -1,4 +1,4 @@
-package io.vcra.apps.languageflip.PhraseBook.Detail.ui.phrasebookdetail;
+package io.vcra.apps.languageflip.PhraseBook.Detail;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ public class PhraseBookDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.phrase_book_detail_fragment, container, false);
+        return inflater.inflate(R.layout.phrase_book_detail_list_fragment, container, false);
     }
 
     @Override

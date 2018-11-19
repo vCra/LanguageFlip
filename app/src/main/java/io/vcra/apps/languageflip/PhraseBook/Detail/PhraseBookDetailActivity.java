@@ -3,7 +3,6 @@ package io.vcra.apps.languageflip.PhraseBook.Detail;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import io.vcra.apps.languageflip.PhraseBook.Detail.ui.phrasebookdetail.PhraseBookDetailFragment;
 import io.vcra.apps.languageflip.R;
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBook;
 
@@ -21,6 +20,8 @@ public class PhraseBookDetailActivity extends AppCompatActivity {
                     .replace(R.id.container, PhraseBookDetailFragment.newInstance())
                     .commitNow();
         }
+
+        int id = getIntent().getIntExtra("PhraseBook", -1);
 
 
 

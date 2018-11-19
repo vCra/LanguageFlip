@@ -1,4 +1,4 @@
-package io.vcra.apps.languageflip.PhraseBook.Detail.ui.phrasebookdetail;
+package io.vcra.apps.languageflip.PhraseBook.Detail;
 
 import android.arch.lifecycle.ViewModel;
 

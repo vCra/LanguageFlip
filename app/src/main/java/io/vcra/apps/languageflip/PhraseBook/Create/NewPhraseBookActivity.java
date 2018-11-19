@@ -26,7 +26,7 @@ public class NewPhraseBookActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_phrase_book);
+        setContentView(R.layout.phrase_book_new_activity);
         mEditPhraseBookView = findViewById(R.id.edit_phrasebook_name);
         NewPhraseBookActivity.this.setTitle("New PhraseBook");
         final Button button = findViewById(R.id.button_save);
