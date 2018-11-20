@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-import io.vcra.apps.languageflip.PhraseBook.Create.NewPhraseBookActivity;
 import io.vcra.apps.languageflip.PhraseBook.Detail.PhraseBookDetailActivity;
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBook;
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBookListAdapter;
@@ -87,16 +86,20 @@ public class PhraseBookListActivity extends AppCompatActivity {
                                 alertDialog.show();
                             } else if (item.getTitle().equals(getString(R.string.rename))) {
                                 Log.i("lf.pb.l", "Rename button pressed for " + String.valueOf(adapter.getFromPosition(position).getId()));
-                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(PhraseBookListActivity.this);
-                                alertDialog.setView(new EditText(PhraseBookListActivity.this));
+                                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PhraseBookListActivity.this);
+                                alertDialog.setView(getLayoutInflater().inflate(R.layout.phrase_book_dialog_rename, null));
                                 alertDialog.setTitle(R.string.rename_phrasebook);
                                 alertDialog.setMessage(R.string.rename_msg);
-                                AlertDialog alertDialog1 = alertDialog.create();
+                                final AlertDialog alertDialog1 = alertDialog.create();
                                 alertDialog1.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.rename),
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 if (which == AlertDialog.BUTTON_POSITIVE){
-                                                    mPhraseBookViewModel.remove(adapter.getFromPosition(position));
+                                                    EditText et = alertDialog1.findViewById(R.id.edit_text_input);
+                                                    String newName = et.getText().toString();
+                                                    mPhraseBookViewModel.rename(
+                                                            adapter.getFromPosition(position),
+                                                            newName);
                                                 }
                                             }
                                         });
@@ -129,7 +132,7 @@ public class PhraseBookListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PhraseBookListActivity.this, NewPhraseBookActivity.class);
+                Intent intent = new Intent(PhraseBookListActivity.this, PhraseBookCreateActivity.class);
                 startActivityForResult(intent, NEW_PHRASE_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -139,7 +142,7 @@ public class PhraseBookListActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            PhraseBook phraseBook = new PhraseBook(data.getStringExtra(NewPhraseBookActivity.EXTRA_REPLY));
+            PhraseBook phraseBook = new PhraseBook(data.getStringExtra(PhraseBookCreateActivity.EXTRA_REPLY));
             mPhraseBookViewModel.insert(phraseBook);
         } else {
             Toast.makeText(

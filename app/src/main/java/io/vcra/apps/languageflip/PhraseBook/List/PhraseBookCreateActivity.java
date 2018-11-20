@@ -1,4 +1,4 @@
-package io.vcra.apps.languageflip.PhraseBook.Create;
+package io.vcra.apps.languageflip.PhraseBook.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import static android.app.PendingIntent.getActivity;
  * Currently only allows allow for a name to be specified
  *   - we can do the adding of phrases later
  */
-public class NewPhraseBookActivity extends AppCompatActivity {
+public class PhraseBookCreateActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "REPLY";
 
@@ -28,7 +28,7 @@ public class NewPhraseBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phrase_book_new_activity);
         mEditPhraseBookView = findViewById(R.id.edit_phrasebook_name);
-        NewPhraseBookActivity.this.setTitle("New PhraseBook");
+        PhraseBookCreateActivity.this.setTitle("New PhraseBook");
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

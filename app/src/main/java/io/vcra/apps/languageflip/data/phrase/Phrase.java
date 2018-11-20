@@ -15,7 +15,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         onDelete = CASCADE
 ))
 public class Phrase {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String primaryWord;
     private String secondaryWord;
@@ -40,7 +40,7 @@ public class Phrase {
         return primaryWord;
     }
 
-    public void setPrimaryWord(String primaryWord) {
+    public void setPrimarysasWord(String primaryWord) {
         this.primaryWord = primaryWord;
     }
 

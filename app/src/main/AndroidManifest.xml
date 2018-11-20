@@ -18,8 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PhraseBook.Create.NewPhraseBookActivity" />
-        <activity android:name=".PhraseBook.Detail.PhraseBookDetailActivity"></activity>
+        <activity android:name=".PhraseBook.List.PhraseBookCreateActivity" />
+        <activity android:name=".PhraseBook.Detail.PhraseBookDetailActivity" />
+        <activity android:name=".PhraseBook.Detail.PhraseCreateActivity"></activity>
     </application>
 
 </manifest>

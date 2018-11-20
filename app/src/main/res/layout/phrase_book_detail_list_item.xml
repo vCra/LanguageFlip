@@ -30,10 +30,17 @@ limitations under the License. -->
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/lang1TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/lang2TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lang1TextView"
                 android:textSize="30sp" />
 
         </RelativeLayout>

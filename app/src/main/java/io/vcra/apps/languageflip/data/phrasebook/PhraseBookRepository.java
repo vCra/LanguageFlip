@@ -3,34 +3,34 @@ package io.vcra.apps.languageflip.data.phrasebook;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import io.vcra.apps.languageflip.data.LFDB;
 
 import java.util.List;
 
-import io.vcra.apps.languageflip.data.LFDB;
 
 
 class PhraseBookRepository {
 
-    private PhraseBookDAO mPhraseBookDAO;
-    private LiveData<List<PhraseBook>> mAllWords;
+    private PhraseBookDAO PhraseBookDAO;
+    private LiveData<List<PhraseBook>> AllPhraseBooks;
 
     PhraseBookRepository(Application application) {
         LFDB db = LFDB.getDatabase(application);
-        mPhraseBookDAO = db.phraseBookDAO();
-        mAllWords = mPhraseBookDAO.getPhraseBooks();
+        PhraseBookDAO = db.phraseBookDAO();
+        AllPhraseBooks = PhraseBookDAO.getPhraseBooks();
     }
 
-    LiveData<List<PhraseBook>> getAllWords() {
-        return mAllWords;
+    LiveData<List<PhraseBook>> getAllPhraseBooks() {
+        return AllPhraseBooks;
     }
 
     void insert(PhraseBook phraseBook) {
-        new insertAsyncTask(mPhraseBookDAO).execute(phraseBook);
+        new insertAsyncTask(PhraseBookDAO).execute(phraseBook);
     }
 
-    void remove(PhraseBook... phraseBooks) { new removeAsyncTask(mPhraseBookDAO).execute(phraseBooks);}
+    void remove(PhraseBook phraseBook) { new removeAsyncTask(PhraseBookDAO).execute(phraseBook);}
 
-    void rename(PhraseBook phraseBook, String) { new updateAsyncTask(mPhraseBookDAO).execute(phraseBook);}
+    void update(PhraseBook phraseBook) { new updateAsyncTask(PhraseBookDAO).execute(phraseBook);}
 
     private static class insertAsyncTask extends AsyncTask<PhraseBook, Void, Void> {
 
@@ -64,6 +64,7 @@ class PhraseBookRepository {
         updateAsyncTask(PhraseBookDAO dao) {
             mAsyncTaskDao = dao;
         }
+
         @Override
         protected Void doInBackground(final PhraseBook... params) {
             mAsyncTaskDao.update(params[0]);

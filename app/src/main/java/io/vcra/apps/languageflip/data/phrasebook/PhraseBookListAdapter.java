@@ -9,32 +9,31 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import io.vcra.apps.languageflip.R;
 
-import java.security.PublicKey;
 import java.util.Collections;
 import java.util.List;
 
 
 public class PhraseBookListAdapter extends RecyclerView.Adapter<PhraseBookListAdapter.PhraseBookViewHolder> {
 
-    class PhraseBookViewHolder extends RecyclerView.ViewHolder {
-        private final TextView phraseBookItemView;
+    class PhraseBookViewHolder extends RecyclerView.ViewHolder { //A ViewHolder for a single PhraseBook
+        private final TextView phraseBookItemView; //The text of the item
 
         private PhraseBookViewHolder(View itemView) {
             super(itemView);
-            phraseBookItemView = itemView.findViewById(R.id.textView);
+            phraseBookItemView = itemView.findViewById(R.id.textView); //The title of the PhraseBook
         }
     }
 
-    private final LayoutInflater mInflater;
+    private final LayoutInflater inflater;
     private List<PhraseBook> mPhraseBooks = Collections.emptyList();
 
     public PhraseBookListAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
+        inflater = LayoutInflater.from(context);
     }
 
     @Override
     public PhraseBookViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.phrase_book_list_item, parent, false);
+        View itemView = inflater.inflate(R.layout.phrase_book_list_item, parent, false);
         return new PhraseBookViewHolder(itemView);
     }
 

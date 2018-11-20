@@ -1,5 +1,6 @@
 package io.vcra.apps.languageflip.data.phrase;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -21,9 +22,9 @@ public interface PhraseDAO {
     void delete(Phrase... phrases);
 
     @Query("SELECT * FROM Phrase")
-    List<Phrase> getAllPhrases();
+    LiveData<List<Phrase>> getAllPhrases();
 
     @Query("SELECT * FROM Phrase WHERE bookId=:bookId")
-    List<Phrase> getPhraseByBookId(int bookId);
+    LiveData<List<Phrase>> getPhraseByBookId(int bookId);
 
 }

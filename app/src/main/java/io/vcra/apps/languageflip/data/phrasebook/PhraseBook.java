@@ -23,7 +23,6 @@ public class PhraseBook {
         this.mPhrase = phrase;
     }
 
-    @NonNull
     public String getPhrase() {
         return this.mPhrase;
     }
@@ -35,4 +34,9 @@ public class PhraseBook {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setPhrase(String phrase) {
+        this.mPhrase = phrase;
+    }
+
 }
