@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".PhraseBook.Detail.PhraseBookDetailActivity">
 
+
+    <include layout="@layout/phrase_book_detail_list_content" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

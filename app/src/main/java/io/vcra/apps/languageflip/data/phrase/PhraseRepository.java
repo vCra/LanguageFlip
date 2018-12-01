@@ -14,7 +14,7 @@ public class PhraseRepository {
 
 
     PhraseRepository(Application application){
-        LFDB db = LFDB.getDatabase(application);
+        LFDB db = LFDB.Companion.getDatabase(application);
         PhraseDAO = db.phraseDAO();
         allPhrases = PhraseDAO.getAllPhrases();
     }

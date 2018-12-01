@@ -15,7 +15,7 @@ class PhraseBookRepository {
     private LiveData<List<PhraseBook>> AllPhraseBooks;
 
     PhraseBookRepository(Application application) {
-        LFDB db = LFDB.getDatabase(application);
+        LFDB db = LFDB.Companion.getDatabase(application);
         PhraseBookDAO = db.phraseBookDAO();
         AllPhraseBooks = PhraseBookDAO.getPhraseBooks();
     }
