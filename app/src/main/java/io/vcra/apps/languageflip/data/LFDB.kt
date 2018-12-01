@@ -1,11 +1,9 @@
 package io.vcra.apps.languageflip.data
 
-import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import android.os.AsyncTask
 
 import io.vcra.apps.languageflip.data.phrase.Phrase
 import io.vcra.apps.languageflip.data.phrase.PhraseDAO
@@ -30,9 +28,7 @@ abstract class LFDB : RoomDatabase() {
                 synchronized(LFDB::class.java) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder<LFDB>(context.applicationContext,
-                                LFDB::class.java!!, "database")
-                                // Wipes and rebuilds instead of migrating if no Migration object.
-                                // Migration is not part of this codelab.
+                                LFDB::class.java, "database")
                                 .fallbackToDestructiveMigration()
                                 .build()
                     }
