@@ -5,7 +5,7 @@
     android:id="@+id/phrasebookdetail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhraseBook.Detail.PhraseBookDetailFragment">
+    tools:context=".PhraseBook.Detail.PhraseBookDetailActivity">
 
     <!-- A RecyclerView with some commonly used attributes -->
     <android.support.v7.widget.RecyclerView

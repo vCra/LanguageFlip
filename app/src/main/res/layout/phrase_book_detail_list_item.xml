@@ -16,40 +16,53 @@ limitations under the License. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="10dp">
+
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/coordinatorLayout"
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:shrinkColumns="0">
 
-            <TextView
-                android:id="@+id/lang1TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toTopOf="@+id/lang2TextView"
-                app:layout_constraintEnd_toStartOf="@+id/lang2TextView"
-                app:layout_constraintStart_toStartOf="@+id/lang2TextView"
-                app:layout_constraintTop_toTopOf="@+id/lang2TextView" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/lang2TextView"
-                android:layout_width="wrap_content"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/lang2TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="30sp"
+                    tools:text="@tools:sample/lorem/random" />
 
-        </android.support.constraint.ConstraintLayout>
+            </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/lang1TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="30sp"
+                    tools:text="@tools:sample/lorem/random" />
+            </TableRow>
+
+        </TableLayout>
     </android.support.v7.widget.CardView>
-
 </LinearLayout>
+
+
+

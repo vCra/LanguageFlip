@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".PhraseBook.List.PhraseBookListActivity"
+            android:name=".welcome.WelcomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".PhraseBook.List.PhraseBookCreateActivity" />
         <activity android:name=".PhraseBook.Detail.PhraseBookDetailActivity" />
-        <activity android:name=".PhraseBook.Detail.PhraseCreateActivity"></activity>
+        <activity android:name=".PhraseBook.Detail.PhraseCreateActivity" />
+        <activity android:name=".PhraseBook.List.PhraseBookListActivity"></activity>
     </application>
 
 </manifest>
