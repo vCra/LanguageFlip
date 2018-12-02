@@ -2,4 +2,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="margin_medium">50</dimen>
     <dimen name="list_item_height">100</dimen>
+    <dimen name="slide_image_size">130dp</dimen>
+    <dimen name="slide_margin_size">20</dimen>
+    <dimen name="slide_title_text_size">20</dimen>
 </resources>

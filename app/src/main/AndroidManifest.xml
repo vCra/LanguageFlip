@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="io.vcra.apps.languageflip">
 
     <application
-        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        android:allowBackup="true">
         <activity
             android:name=".welcome.WelcomeActivity"
             android:label="@string/app_name"
@@ -19,9 +22,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".PhraseBook.List.PhraseBookCreateActivity" />
-        <activity android:name=".PhraseBook.Detail.PhraseBookDetailActivity" />
+        <activity
+            android:name=".PhraseBook.Detail.PhraseBookDetailActivity"
+            android:parentActivityName=".PhraseBook.List.PhraseBookListActivity"/>
         <activity android:name=".PhraseBook.Detail.PhraseCreateActivity" />
-        <activity android:name=".PhraseBook.List.PhraseBookListActivity"></activity>
+        <activity
+            android:name=".PhraseBook.List.PhraseBookListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".PhraseBook.List.PhraseBookListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.vcra.apps.languageflip.PhraseBook.List.PhraseBookListActivity" />
+        </activity>
     </application>
 
 </manifest>

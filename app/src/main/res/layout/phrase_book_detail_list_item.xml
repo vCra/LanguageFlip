@@ -43,6 +43,8 @@ limitations under the License. -->
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="30sp"
+                    android:textAlignment="center"
+
                     tools:text="@tools:sample/lorem/random" />
 
             </TableRow>
@@ -57,6 +59,7 @@ limitations under the License. -->
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="30sp"
+                    android:textAlignment="center"
                     tools:text="@tools:sample/lorem/random" />
             </TableRow>
 

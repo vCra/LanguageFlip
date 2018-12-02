@@ -14,16 +14,17 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.PopupMenu
-import android.widget.Toast
+import android.widget.*
 import io.vcra.apps.languageflip.PhraseBook.Detail.PhraseBookDetailActivity
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBook
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBookListAdapter
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBookViewModel
 import io.vcra.apps.languageflip.R
+import io.vcra.apps.languageflip.settings.SettingsActivity
 import io.vcra.apps.languageflip.tools.RecyclerItemClickListener
 
 
@@ -117,6 +118,23 @@ class PhraseBookListActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_phrase_book_list, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -130,6 +148,7 @@ class PhraseBookListActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG).show()
         }
     }
+
 
     companion object {
 

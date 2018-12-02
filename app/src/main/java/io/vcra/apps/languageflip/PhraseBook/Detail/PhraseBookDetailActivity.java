@@ -35,6 +35,9 @@ public class PhraseBookDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phrase_book_detail_activity);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mViewModel = ViewModelProviders.of(this).get(PhraseViewModel.class);
         int id = getIntent().getIntExtra("PhraseBook", -1);
         mViewModel.setPhraseBookID(id);
@@ -83,4 +86,5 @@ public class PhraseBookDetailActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
     }
+
 }
