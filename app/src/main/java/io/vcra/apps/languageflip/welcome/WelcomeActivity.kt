@@ -33,7 +33,9 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var btnNext: Button
 
     private lateinit var viewPagerAdapter: ViewPagerAdapter
-    private var layouts: IntArray = intArrayOf(R.layout.welcome_page1_slide)
+    private var layouts: IntArray = intArrayOf(
+            R.layout.welcome_page1_slide,
+            R.layout.welcome_page3_slide)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +75,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     /**
-     * Shos the PhraseBookListActivity, and finishes the Welcome Activity
+     * Shows the PhraseBookListActivity, and finishes the Welcome Activity
      */
     private fun launchHomeScreen() {
         startActivity(Intent(this@WelcomeActivity, PhraseBookListActivity::class.java))
@@ -86,10 +88,9 @@ class WelcomeActivity : AppCompatActivity() {
      * After this, this welcome page will not be shown, unless the user removes the app data
      */
     private fun skipUnlessFirstRun() {
-        launchHomeScreen()
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         if (!prefs.getBoolean("firstRun", true)) {
-            launchHomeScreen()
+            //launchHomeScreen()
         } else prefs.edit().putBoolean("firstRun", false).apply()
 
     }

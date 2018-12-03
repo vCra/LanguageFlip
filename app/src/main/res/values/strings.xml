@@ -22,6 +22,10 @@
     <string name="pref_header_general">General</string>
     <string name="title_settings_lang2">Language to Learn</string>
     <string name="title_settings_lang1">Main Language</string>
+    <string name="your_language">Your Language:</string>
+    <string name="your_current_language">Your Current Language:</string>
+    <string name="what_do_you_want_to_learn">What do you want to learn?</string>
+    <string name="lets_enter_some_settings_to_get_you_started">Lets enter some settings to get you started</string>
 
 
 </resources>
