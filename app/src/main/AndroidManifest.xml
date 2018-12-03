@@ -4,13 +4,13 @@
     package="io.vcra.apps.languageflip">
 
     <application
+        android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:allowBackup="true">
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".welcome.WelcomeActivity"
             android:label="@string/app_name"
@@ -24,7 +24,7 @@
         <activity android:name=".PhraseBook.List.PhraseBookCreateActivity" />
         <activity
             android:name=".PhraseBook.Detail.PhraseBookDetailActivity"
-            android:parentActivityName=".PhraseBook.List.PhraseBookListActivity"/>
+            android:parentActivityName=".PhraseBook.List.PhraseBookListActivity" />
         <activity android:name=".PhraseBook.Detail.PhraseCreateActivity" />
         <activity
             android:name=".PhraseBook.List.PhraseBookListActivity"
@@ -37,6 +37,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.vcra.apps.languageflip.PhraseBook.List.PhraseBookListActivity" />
         </activity>
+        <activity android:name=".games.QuizActivity"></activity>
     </application>
 
 </manifest>

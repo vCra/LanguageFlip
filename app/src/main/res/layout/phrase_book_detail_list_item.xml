@@ -41,7 +41,7 @@ limitations under the License. -->
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/lang2TextView"
+                    android:id="@+id/lang1TextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -59,7 +59,7 @@ limitations under the License. -->
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/lang1TextView"
+                    android:id="@+id/lang2TextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

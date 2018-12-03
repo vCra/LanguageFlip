@@ -21,6 +21,7 @@ import io.vcra.apps.languageflip.data.phrase.PhraseListAdapter
 import io.vcra.apps.languageflip.data.phrase.PhraseRepository
 import io.vcra.apps.languageflip.data.phrase.PhraseViewModel
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBook
+import io.vcra.apps.languageflip.games.QuizActivity
 
 class PhraseBookDetailActivity : AppCompatActivity() {
 
@@ -52,6 +53,12 @@ class PhraseBookDetailActivity : AppCompatActivity() {
         fab.setOnClickListener {
             val intent = Intent(this@PhraseBookDetailActivity, PhraseCreateActivity::class.java)
             startActivityForResult(intent, NEW_PHRASE_ACTIVITY_REQUEST_CODE)
+        }
+        val fabgame = this.findViewById<FloatingActionButton>(R.id.fabgame)
+        fab.setOnClickListener {
+            val intent = Intent(baseContext, QuizActivity::class.java)
+            intent.putExtra("PhraseBook", id)
+            startActivity(intent)
         }
 
         mViewModel!!.phrases.observe(this, Observer { phrases -> adapter.setPhrases(phrases) })

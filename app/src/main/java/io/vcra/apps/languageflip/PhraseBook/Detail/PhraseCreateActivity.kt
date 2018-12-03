@@ -49,7 +49,9 @@ class PhraseCreateActivity : AppCompatActivity() {
                 replyIntent.putExtra(LANG2REPLY, lang2)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
+
             finish()
+
         }
 
     }
