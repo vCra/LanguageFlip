@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -47,61 +48,35 @@ class PhraseBookListActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = PhraseBookListAdapter(this)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val llm = LinearLayoutManager(this)
+        recyclerView.layoutManager = llm
 
         recyclerView.addOnItemTouchListener(
-                RecyclerItemClickListener(this@PhraseBookListActivity, recyclerView, object : RecyclerItemClickListener.OnItemClickListener {
-                    override fun onItemClick(view: View, position: Int) {
-                        val pb = adapter.getFromPosition(position)
-                        val intent = Intent(baseContext, PhraseBookDetailActivity::class.java)
-                        intent.putExtra("PhraseBook", pb.id)
-                        startActivity(intent)
-                    }
+            RecyclerItemClickListener(this@PhraseBookListActivity, recyclerView, object : RecyclerItemClickListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    val pb = adapter.getFromPosition(position)
+                    val intent = Intent(baseContext, PhraseBookDetailActivity::class.java)
+                    intent.putExtra("PhraseBook", pb.id)
+                    startActivity(intent)
+                }
 
-                    override fun onLongItemClick(view: View, position: Int) {
-                        val popup = PopupMenu(this@PhraseBookListActivity, view)
-                        popup.menuInflater.inflate(R.menu.phrase_book_list_item_menu, popup.menu)
-                        popup.setOnMenuItemClickListener { item ->
-                            //TODO: Do this by not using the titles but instead the ID's
-                            if (item.title == "Remove") {
-                                Log.i("lf.pb.l", "Remove button pressed for " + adapter.getFromPosition(position).id.toString())
-
-                                val alertDialog = AlertDialog.Builder(this@PhraseBookListActivity).create()
-                                alertDialog.setTitle(getString(R.string.areyousure))
-                                alertDialog.setMessage(getString(R.string.removephrasebooktext))
-                                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.sure)
-                                ) { _, which ->
-                                    if (which == AlertDialog.BUTTON_POSITIVE) {
-                                        mPhraseBookViewModel!!.remove(adapter.getFromPosition(position))
-                                    }
-                                }
-                                alertDialog.show()
-                            } else if (item.title == getString(R.string.rename)) {
-                                Log.i("lf.pb.l", "Rename button pressed for " + adapter.getFromPosition(position).id.toString())
-                                val alertDialog = AlertDialog.Builder(this@PhraseBookListActivity)
-                                alertDialog.setView(layoutInflater.inflate(R.layout.phrase_book_dialog_rename, null))
-                                alertDialog.setTitle(R.string.rename_phrasebook)
-                                alertDialog.setMessage(R.string.rename_msg)
-                                val alertDialog1 = alertDialog.create()
-                                alertDialog1.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.rename)
-                                ) { _, which ->
-                                    if (which == AlertDialog.BUTTON_POSITIVE) {
-                                        val et = alertDialog1.findViewById<EditText>(R.id.edit_text_input)
-                                        val newName = et!!.text.toString()
-                                        mPhraseBookViewModel!!.rename(
-                                                adapter.getFromPosition(position),
-                                                newName)
-                                    }
-                                }
-                                alertDialog1.show()
-                            } else {
-                                Log.e("lf", "Context menu item selected which is not implemented for")
-                            }
-                            true
+                override fun onLongItemClick(view: View, position: Int) {
+                    val popup = PopupMenu(this@PhraseBookListActivity, view)
+                    popup.menuInflater.inflate(R.menu.phrase_book_list_item_menu, popup.menu)
+                    popup.setOnMenuItemClickListener { item ->
+                        //TODO: Do this by not using the titles but instead the ID's
+                        if (item.title == "Remove") {
+                            onRemoveItem(adapter, position)
+                        } else if (item.title == getString(R.string.rename)) {
+                            onRenameItem(adapter, position)
+                        } else {
+                            Log.e("lf", "Context menu item selected which is not implemented for")
                         }
-                        popup.show()
+                        true
                     }
-                })
+                    popup.show()
+                }
+            })
         )
 
         mPhraseBookViewModel!!.allWords.observe(this, Observer { phraseBooks ->
@@ -114,6 +89,43 @@ class PhraseBookListActivity : AppCompatActivity() {
             val intent = Intent(this@PhraseBookListActivity, PhraseBookCreateActivity::class.java)
             startActivityForResult(intent, NEW_PHRASE_ACTIVITY_REQUEST_CODE)
         }
+
+
+    }
+
+    private fun onRenameItem(adapter: PhraseBookListAdapter, position: Int) {
+        Log.i("lf.pb.l", "Rename button pressed for " + adapter.getFromPosition(position).id.toString())
+        val alertDialog = AlertDialog.Builder(this@PhraseBookListActivity)
+        alertDialog.setView(layoutInflater.inflate(R.layout.phrase_book_dialog_rename, null))
+        alertDialog.setTitle(R.string.rename_phrasebook)
+        alertDialog.setMessage(R.string.rename_msg)
+        val alertDialog1 = alertDialog.create()
+        alertDialog1.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.rename)
+        ) { _, which ->
+            if (which == AlertDialog.BUTTON_POSITIVE) {
+                val et = alertDialog1.findViewById<EditText>(R.id.edit_text_input)
+                val newName = et!!.text.toString()
+                mPhraseBookViewModel!!.rename(
+                        adapter.getFromPosition(position),
+                        newName)
+            }
+        }
+        alertDialog1.show()
+    }
+
+    private fun onRemoveItem(adapter: PhraseBookListAdapter, position: Int) {
+        Log.i("lf.pb.l", "Remove button pressed for " + adapter.getFromPosition(position).id.toString())
+
+        val alertDialog = AlertDialog.Builder(this@PhraseBookListActivity).create()
+        alertDialog.setTitle(getString(R.string.areyousure))
+        alertDialog.setMessage(getString(R.string.removephrasebooktext))
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.sure)
+        ) { _, which ->
+            if (which == AlertDialog.BUTTON_POSITIVE) {
+                mPhraseBookViewModel!!.remove(adapter.getFromPosition(position))
+            }
+        }
+        alertDialog.show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

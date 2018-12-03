@@ -1,43 +1,34 @@
 package io.vcra.apps.languageflip.games
 
-class QuizHelper(val ph: Int) {
-
-    var currentQuestion = -1
-    var currentAnswer = 0
-    var correctAnswer = 0
-    var currentScore = 0
+import android.content.Context
+import io.vcra.apps.languageflip.data.LFDB
+import io.vcra.apps.languageflip.data.phrase.Phrase
 
 
+class QuizHelper(val ph: Int, context: Context) {
 
-    var qq: QuizQuestion = QuizQuestion()
+    var unusedPhrases: ArrayList<Phrase> = ArrayList(LFDB.getDatabase(context = context)?.phraseDAO()!!.getDeadPhraseByBookId(ph))
+    var score = 0
 
+    var currentPhrase: Phrase? = null
 
+    var round = 0
+    val numberOfRounds: Int = unusedPhrases.size
 
-    fun genQQ(): QuizQuestion {
-        qq = QuizQuestion()
-        qq.question =  "What is todays date?"
-        qq.answers[0] = "test1"
-        qq.answers[1] = "test2"
-        qq.answers[2] = "test3"
-        qq.answers[3] = "test4"
-        return qq
+    fun beginRound(): Phrase{
+        round++
+        val question = unusedPhrases.random()
+        unusedPhrases.remove(question)
+        currentPhrase = question
+        return question
     }
 
-    fun getAnswer(): String{
-        currentQuestion++
-        return qq.answers[currentQuestion]
+    fun checkAnswer(answer: String): Boolean{
+        if (answer.equals(currentPhrase?.secondaryWord, true)){
+            score ++
+            return true
+        }
+        return false
     }
-
-    fun getQuestion(): String{
-        return qq.question
-    }
-
-    fun nextQuestion(){
-        currentQuestion++
-        currentAnswer = -1
-    }
-
-
-
 
 }

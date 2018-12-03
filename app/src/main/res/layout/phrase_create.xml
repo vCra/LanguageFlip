@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Create a phrase here, by entering the same phrase in both languages"
+        android:text="@string/create_a_phrase_here_by_entering_the_same_phrase_in_both_languages"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,10 +35,10 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:labelFor="@id/edit_phrase_lang1"
-            android:text="lang1"
+            android:text="@string/lang1"
             app:layout_constraintBottom_toTopOf="@+id/label_lang2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edit_phrase_lang1"
+            app:layout_constraintTop_toTopOf="@+id/edit_phrase_lang2"
             app:layout_constraintVertical_bias="0.16000003" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:labelFor="@id/edit_phrase_lang2"
-            android:text="lang2"
+            android:text="@string/lang2"
             app:layout_constraintBottom_toTopOf="@+id/button_save"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edit_phrase_lang2"
@@ -77,8 +77,8 @@
         android:id="@+id/edit_phrase_lang2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
 
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:autofillHints=""
@@ -86,7 +86,6 @@
         android:inputType="textAutoComplete"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/edit_phrase_lang1" />
 

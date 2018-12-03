@@ -8,56 +8,79 @@
     tools:context=".games.QuizActivity">
 
     <TextView
-        android:id="@+id/questionText"
+        android:id="@+id/questionPrompt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="What is the correct meaning of the following word"
+        android:text="@string/what_is_the_correct_meaning_of_the_following_word"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/label_lang1"
-        android:layout_width="372dp"
-        android:layout_height="20dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:labelFor="@id/edit_phrase_lang1"
-        android:text="Answer:"
-        app:layout_constraintBottom_toTopOf="@+id/label_lang2"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="Word"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_phrase_lang2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionText"
-        app:layout_constraintVertical_bias="0.16000003" />
+        app:layout_constraintTop_toBottomOf="@+id/questionPrompt" />
 
     <EditText
-        android:id="@+id/edit_phrase_lang1"
+        android:id="@+id/edit_phrase_lang2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:autofillHints=""
         android:fontFamily="sans-serif-light"
+        android:hint="@string/answer"
         android:inputType="textAutoComplete"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_save"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_lang1" />
+
+    <TextView
+        android:id="@+id/score_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Score: 0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_phrase_lang2" />
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:text="@string/button_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="231dp" />
+        app:layout_constraintTop_toBottomOf="@+id/score_label" />
+
+    <TextView
+        android:id="@+id/learner_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_phrase_lang2" />
 
 
 </android.support.constraint.ConstraintLayout>

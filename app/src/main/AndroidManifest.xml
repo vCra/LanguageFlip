@@ -37,7 +37,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.vcra.apps.languageflip.PhraseBook.List.PhraseBookListActivity" />
         </activity>
-        <activity android:name=".games.QuizActivity"></activity>
+        <activity android:name=".games.QuizActivity"/>
     </application>
 
 </manifest>

@@ -30,6 +30,7 @@ abstract class LFDB : RoomDatabase() {
                         INSTANCE = Room.databaseBuilder<LFDB>(context.applicationContext,
                                 LFDB::class.java, "database")
                                 .fallbackToDestructiveMigration()
+                                .allowMainThreadQueries()
                                 .build()
                     }
                 }

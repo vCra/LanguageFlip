@@ -26,6 +26,18 @@
     <string name="your_current_language">Your Current Language:</string>
     <string name="what_do_you_want_to_learn">What do you want to learn?</string>
     <string name="lets_enter_some_settings_to_get_you_started">Lets enter some settings to get you started</string>
+    <string name="what_is_the_correct_meaning_of_the_following_word">What is the correct translation of the following word</string>
+    <string name="answer">Answer</string>
+    <string name="score">Score:</string>
+    <string name="correct_message">That\'s right!</string>
+    <string name="actually_means">%s actually means %s</string>
+    <string name="score_int">Score: %s</string>
+    <string name="you_got_score">You got a score of %s</string>
+    <string name="create_a_phrase_here_by_entering_the_same_phrase_in_both_languages">Create a phrase here, by entering the same phrase in both languages</string>
+    <string name="lang1">lang1</string>
+    <string name="lang2">lang2</string>
+    <string name="rem_phrase">Remove Phrase</string>
+    <string name="ren_phrase">Edit Phrase</string>
 
 
 </resources>

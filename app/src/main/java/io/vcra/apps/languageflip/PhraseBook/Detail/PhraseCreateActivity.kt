@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.TextUtils
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import io.vcra.apps.languageflip.R
-import io.vcra.apps.languageflip.data.phrase.Phrase
 
 class PhraseCreateActivity : AppCompatActivity() {
 
@@ -23,7 +21,7 @@ class PhraseCreateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.phrase_create)
-        etLang1 = findViewById(R.id.edit_phrase_lang1)
+        etLang1 = findViewById(R.id.edit_phrase_lang2)
         etLang2 = findViewById(R.id.edit_phrase_lang2)
         lblLang1 = findViewById(R.id.label_lang1)
         lblLang2 = findViewById(R.id.label_lang2)
@@ -40,11 +38,11 @@ class PhraseCreateActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (TextUtils.isEmpty(etLang1!!.text) || TextUtils.isEmpty(etLang2!!.text)) {
+            if (TextUtils.isEmpty(etLang1.text) || TextUtils.isEmpty(etLang2.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val lang1 = etLang1!!.text.toString()
-                val lang2 = etLang2!!.text.toString()
+                val lang1 = etLang1.text.toString()
+                val lang2 = etLang2.text.toString()
                 replyIntent.putExtra(LANG1REPLY, lang1)
                 replyIntent.putExtra(LANG2REPLY, lang2)
                 setResult(Activity.RESULT_OK, replyIntent)

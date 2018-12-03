@@ -27,6 +27,9 @@ public interface PhraseDAO {
     @Query("SELECT * FROM Phrase WHERE bookId=:bookId")
     LiveData<List<Phrase>> getPhraseByBookId(int bookId);
 
+    @Query("SELECT * FROM Phrase WHERE bookId=:bookId")
+    List<Phrase> getDeadPhraseByBookId(int bookId);
+
     @Query("SELECT COUNT(*) FROM Phrase where bookId=:bookID")
     Integer getPhrasesInBook(int bookID);
 
