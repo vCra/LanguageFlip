@@ -16,22 +16,24 @@ limitations under the License. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:weightSum="1">
 
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        app:cardElevation="3dp">
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:shrinkColumns="0">
+            android:orientation="vertical">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -42,10 +44,12 @@ limitations under the License. -->
                     android:id="@+id/lang2TextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
-                    android:textAlignment="center"
+                    android:layout_weight="1"
 
-                    tools:text="@tools:sample/lorem/random" />
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textSize="30sp"
+                    tools:text="@tools:sample/cities" />
 
             </TableRow>
 
@@ -58,9 +62,11 @@ limitations under the License. -->
                     android:id="@+id/lang1TextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
                     android:textSize="30sp"
-                    android:textAlignment="center"
-                    tools:text="@tools:sample/lorem/random" />
+                    tools:text="@tools:sample/cities" />
             </TableRow>
 
         </TableLayout>

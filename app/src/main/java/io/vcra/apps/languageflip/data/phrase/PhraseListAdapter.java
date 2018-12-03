@@ -58,5 +58,7 @@ public class PhraseListAdapter extends RecyclerView.Adapter<PhraseListAdapter.Ph
 
     public void setPhrases(List<Phrase> phrases) {
         this.phrases = phrases;
+        notifyDataSetChanged();
+
     }
 }

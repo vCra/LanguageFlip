@@ -37,10 +37,12 @@ class PhraseBookListActivity : AppCompatActivity() {
         setContentView(R.layout.phrase_book_list_activity)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = "PhraseBooks"
         setSupportActionBar(toolbar)
 
         // Get a new or existing ViewModel from the ViewModelProvider.
         mPhraseBookViewModel = ViewModelProviders.of(this).get(PhraseBookViewModel::class.java)
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = PhraseBookListAdapter(this)
@@ -102,10 +104,6 @@ class PhraseBookListActivity : AppCompatActivity() {
                 })
         )
 
-
-        // Add an observer on the LiveData returned by getPhraseBooks.
-        // The onChanged() method fires when the observed data changes and the activity is
-        // in the foreground.
         mPhraseBookViewModel!!.allWords.observe(this, Observer { phraseBooks ->
             // Update the cached copy of the words in the adapter.
             adapter.setPhraseBooks(phraseBooks)
@@ -148,7 +146,6 @@ class PhraseBookListActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG).show()
         }
     }
-
 
     companion object {
 

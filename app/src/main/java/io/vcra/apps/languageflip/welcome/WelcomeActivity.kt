@@ -18,8 +18,9 @@ import android.text.Html
 import android.widget.TextView
 import android.support.v4.content.ContextCompat
 import android.preference.PreferenceManager
-
-
+import android.widget.EditText
+import kotlinx.android.synthetic.main.welcome_page3_slide.*
+import java.util.*
 
 
 // This was inspired from https://www.androidhive.info/2016/05/android-build-intro-slider-app/
@@ -31,6 +32,7 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var dotTracker: ArrayList<TextView>
     private lateinit var btnSkip: Button
     private lateinit var btnNext: Button
+    private lateinit var lang1Edit: EditText
 
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private var layouts: IntArray = intArrayOf(
@@ -54,7 +56,9 @@ class WelcomeActivity : AppCompatActivity() {
         viewPager.adapter = ViewPagerAdapter()
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener)
 
-        btnSkip.setOnClickListener { launchHomeScreen() }
+        // When we skip, we do not need to change the value of the 2 languages
+        btnSkip.setOnClickListener {
+            launchHomeScreen() }
 
         btnNext.setOnClickListener {
             // checking for last page
@@ -64,6 +68,13 @@ class WelcomeActivity : AppCompatActivity() {
                 // move to next screen
                 viewPager.currentItem = current
             } else {
+                //We've gone past the last page
+                val lang2Edit: EditText = findViewById(R.id.editLang2)
+                val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+                val editor: SharedPreferences.Editor = prefs.edit()
+                editor.putString("lang1", lang1Edit.text.toString())
+                editor.putString("lang2", lang2Edit.text.toString())
+                editor.apply()
                 launchHomeScreen()
             }
         }
@@ -126,6 +137,8 @@ class WelcomeActivity : AppCompatActivity() {
                 // last page. make button text to GOT IT
                 btnNext.text = getString(R.string.begin)
                 btnSkip.visibility = View.GONE
+                lang1Edit = findViewById(R.id.editLang1)
+                lang1Edit.setText(Locale.getDefault().getDisplayLanguage().toString())
             } else {
                 // still pages are left
                 btnNext.text = getString(R.string.next)
