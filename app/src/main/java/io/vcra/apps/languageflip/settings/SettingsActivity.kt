@@ -17,6 +17,7 @@ import android.preference.RingtonePreference
 import android.text.TextUtils
 import android.view.MenuItem
 import android.support.v4.app.NavUtils
+import android.widget.Toast
 import io.vcra.apps.languageflip.R
 import io.vcra.apps.languageflip.data.LFDB
 
@@ -165,12 +166,19 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
             // Trigger the listener immediately with the preference's
             // current value.
+            // This is the only changeListener, so we have to put this ehre
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                     PreferenceManager
                             .getDefaultSharedPreferences(preference.context)
                             .getString(preference.key, ""))
             LFDB.getDatabase(context = preference.context)?.phraseDAO()!!.deleteAll()
             LFDB.getDatabase(context = preference.context)?.phraseBookDAO()!!.deleteAll()
+
+            Toast.makeText(
+                    preference.context,
+                    "Language Flip Phrasebooks get reset when you change preferences! All data deleted!",
+                    Toast.LENGTH_LONG
+            ).show()
         }
     }
 }
