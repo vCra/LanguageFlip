@@ -84,7 +84,7 @@ class PhraseBookListActivity : AppCompatActivity() {
             adapter.setPhraseBooks(phraseBooks)
         })
 
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(this@PhraseBookListActivity, PhraseBookCreateActivity::class.java)
             startActivityForResult(intent, NEW_PHRASE_ACTIVITY_REQUEST_CODE)
