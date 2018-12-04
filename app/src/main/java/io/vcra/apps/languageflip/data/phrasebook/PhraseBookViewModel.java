@@ -26,11 +26,11 @@ public class PhraseBookViewModel extends AndroidViewModel {
         repository.insert(phraseBook);
     }
 
-    public void remove(PhraseBook phraseBook){
+    public void remove(PhraseBook phraseBook) {
         repository.remove(phraseBook);
     }
 
-    public void rename(PhraseBook phraseBook, String str){
+    public void rename(PhraseBook phraseBook, String str) {
         phraseBook.setPhrase(str);
         repository.update(phraseBook);
     }

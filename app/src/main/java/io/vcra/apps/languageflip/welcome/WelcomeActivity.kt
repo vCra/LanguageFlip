@@ -3,23 +3,21 @@ package io.vcra.apps.languageflip.welcome
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.support.v4.content.ContextCompat
+import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 import io.vcra.apps.languageflip.PhraseBook.List.PhraseBookListActivity
 import io.vcra.apps.languageflip.R
-import android.widget.LinearLayout
-import android.support.v4.view.ViewPager
-import android.widget.Button
-import android.view.ViewGroup
-import android.view.LayoutInflater
-import android.support.v4.view.PagerAdapter
-import android.view.View
-import android.text.Html
-import android.widget.TextView
-import android.support.v4.content.ContextCompat
-import android.preference.PreferenceManager
-import android.widget.EditText
-import kotlinx.android.synthetic.main.welcome_page3_slide.*
 import java.util.*
 
 
@@ -57,7 +55,8 @@ class WelcomeActivity : AppCompatActivity() {
 
         // When we skip, we do not need to change the value of the 2 languages
         btnSkip.setOnClickListener {
-            launchHomeScreen() }
+            launchHomeScreen()
+        }
 
         btnNext.setOnClickListener {
             // checking for last page
@@ -79,7 +78,6 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         setDots(0)
-
 
 
     }
@@ -138,7 +136,7 @@ class WelcomeActivity : AppCompatActivity() {
                 btnNext.text = getString(R.string.begin)
                 btnSkip.visibility = View.GONE
                 lang1Edit = findViewById(R.id.editLang1)
-                lang1Edit.setText(Locale.getDefault().getDisplayLanguage().toString())
+                lang1Edit.setText(Locale.getDefault().displayLanguage.toString())
             } else {
                 // still pages are left
                 btnNext.text = getString(R.string.next)

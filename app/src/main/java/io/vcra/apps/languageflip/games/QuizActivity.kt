@@ -1,7 +1,7 @@
 package io.vcra.apps.languageflip.games
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -35,7 +35,7 @@ class QuizActivity : AppCompatActivity() {
         button = findViewById(R.id.button_save)
 
         button.setOnClickListener {
-            if (quizHelper.checkAnswer(editBox.text.toString())){
+            if (quizHelper.checkAnswer(editBox.text.toString())) {
                 learner.text = getString(R.string.correct_message)
             } else {
                 learner.text = getString(R.string.actually_means).format(currentPhrase.primaryWord, currentPhrase.secondaryWord)
@@ -46,19 +46,20 @@ class QuizActivity : AppCompatActivity() {
         setQuestion()
     }
 
-    fun setQuestion(){
+    private fun setQuestion() {
         word.text = currentPhrase.primaryWord
         editBox.setText("")
     }
 
-    fun nextQuestion(){
+
+    private fun nextQuestion() {
         //Check if we have run out of questions
-        if (quizHelper.round == quizHelper.numberOfRounds){
+        if (quizHelper.round == quizHelper.numberOfRounds) {
             finish()
             Toast.makeText(
-                applicationContext,
-                getString(R.string.you_got_score).format(quizHelper.score),
-                Toast.LENGTH_LONG
+                    applicationContext,
+                    getString(R.string.you_got_score).format(quizHelper.score),
+                    Toast.LENGTH_LONG
             ).show()
 
         } else {

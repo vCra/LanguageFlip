@@ -15,18 +15,8 @@ import java.util.List;
 
 public class PhraseBookListAdapter extends RecyclerView.Adapter<PhraseBookListAdapter.PhraseBookViewHolder> {
 
-    class PhraseBookViewHolder extends RecyclerView.ViewHolder { //A ViewHolder for a single PhraseBook
-        private final TextView phraseBookItemView; //The text of the item
-
-        private PhraseBookViewHolder(View itemView) {
-            super(itemView);
-            phraseBookItemView = itemView.findViewById(R.id.textView); //The title of the PhraseBook
-        }
-    }
-
     private final LayoutInflater inflater;
     private List<PhraseBook> mPhraseBooks = Collections.emptyList();
-
     public PhraseBookListAdapter(Context context) {
         inflater = LayoutInflater.from(context);
     }
@@ -48,17 +38,26 @@ public class PhraseBookListAdapter extends RecyclerView.Adapter<PhraseBookListAd
         notifyDataSetChanged();
     }
 
-    public PhraseBook getFromPosition(int position){
+    public PhraseBook getFromPosition(int position) {
         return mPhraseBooks.get(position);
     }
 
-    public int getIDFromPosition(int position){
+    public int getIDFromPosition(int position) {
         return mPhraseBooks.get(position).getId();
     }
 
     @Override
     public int getItemCount() {
         return mPhraseBooks.size();
+    }
+
+    class PhraseBookViewHolder extends RecyclerView.ViewHolder { //A ViewHolder for a single PhraseBook
+        private final TextView phraseBookItemView; //The text of the item
+
+        private PhraseBookViewHolder(View itemView) {
+            super(itemView);
+            phraseBookItemView = itemView.findViewById(R.id.textView); //The title of the PhraseBook
+        }
     }
 }
 

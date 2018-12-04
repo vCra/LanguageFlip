@@ -15,7 +15,7 @@ class QuizHelper(val ph: Int, context: Context) {
     var round = 0
     val numberOfRounds: Int = unusedPhrases.size
 
-    fun beginRound(): Phrase{
+    fun beginRound(): Phrase {
         round++
         val question = unusedPhrases.random()
         unusedPhrases.remove(question)
@@ -23,9 +23,9 @@ class QuizHelper(val ph: Int, context: Context) {
         return question
     }
 
-    fun checkAnswer(answer: String): Boolean{
-        if (answer.equals(currentPhrase?.secondaryWord, true)){
-            score ++
+    fun checkAnswer(answer: String): Boolean {
+        if (answer.equals(currentPhrase?.secondaryWord, true)) {
+            score++
             return true
         }
         return false

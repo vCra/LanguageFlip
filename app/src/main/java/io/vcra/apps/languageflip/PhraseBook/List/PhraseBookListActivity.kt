@@ -4,10 +4,8 @@ package io.vcra.apps.languageflip.PhraseBook.List
 import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -19,12 +17,14 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.EditText
+import android.widget.PopupMenu
+import android.widget.Toast
 import io.vcra.apps.languageflip.PhraseBook.Detail.PhraseBookDetailActivity
+import io.vcra.apps.languageflip.R
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBook
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBookListAdapter
 import io.vcra.apps.languageflip.data.phrasebook.PhraseBookViewModel
-import io.vcra.apps.languageflip.R
 import io.vcra.apps.languageflip.settings.SettingsActivity
 import io.vcra.apps.languageflip.tools.RecyclerItemClickListener
 
@@ -52,31 +52,31 @@ class PhraseBookListActivity : AppCompatActivity() {
         recyclerView.layoutManager = llm
 
         recyclerView.addOnItemTouchListener(
-            RecyclerItemClickListener(this@PhraseBookListActivity, recyclerView, object : RecyclerItemClickListener.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int) {
-                    val pb = adapter.getFromPosition(position)
-                    val intent = Intent(baseContext, PhraseBookDetailActivity::class.java)
-                    intent.putExtra("PhraseBook", pb.id)
-                    startActivity(intent)
-                }
-
-                override fun onLongItemClick(view: View, position: Int) {
-                    val popup = PopupMenu(this@PhraseBookListActivity, view)
-                    popup.menuInflater.inflate(R.menu.phrase_book_list_item_menu, popup.menu)
-                    popup.setOnMenuItemClickListener { item ->
-                        //TODO: Do this by not using the titles but instead the ID's
-                        if (item.title == "Remove") {
-                            onRemoveItem(adapter, position)
-                        } else if (item.title == getString(R.string.rename)) {
-                            onRenameItem(adapter, position)
-                        } else {
-                            Log.e("lf", "Context menu item selected which is not implemented for")
-                        }
-                        true
+                RecyclerItemClickListener(this@PhraseBookListActivity, recyclerView, object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View, position: Int) {
+                        val pb = adapter.getFromPosition(position)
+                        val intent = Intent(baseContext, PhraseBookDetailActivity::class.java)
+                        intent.putExtra("PhraseBook", pb.id)
+                        startActivity(intent)
                     }
-                    popup.show()
-                }
-            })
+
+                    override fun onLongItemClick(view: View, position: Int) {
+                        val popup = PopupMenu(this@PhraseBookListActivity, view)
+                        popup.menuInflater.inflate(R.menu.phrase_book_list_item_menu, popup.menu)
+                        popup.setOnMenuItemClickListener { item ->
+                            //TODO: Do this by not using the titles but instead the ID's
+                            if (item.title == "Remove") {
+                                onRemoveItem(adapter, position)
+                            } else if (item.title == getString(R.string.rename)) {
+                                onRenameItem(adapter, position)
+                            } else {
+                                Log.e("lf", "Context menu item selected which is not implemented for")
+                            }
+                            true
+                        }
+                        popup.show()
+                    }
+                })
         )
 
         mPhraseBookViewModel!!.allWords.observe(this, Observer { phraseBooks ->

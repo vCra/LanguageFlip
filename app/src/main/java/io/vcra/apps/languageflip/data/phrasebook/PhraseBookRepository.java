@@ -8,7 +8,6 @@ import io.vcra.apps.languageflip.data.LFDB;
 import java.util.List;
 
 
-
 class PhraseBookRepository {
 
     private PhraseBookDAO PhraseBookDAO;
@@ -28,16 +27,22 @@ class PhraseBookRepository {
         new insertAsyncTask(PhraseBookDAO).execute(phraseBook);
     }
 
-    void remove(PhraseBook phraseBook) { new removeAsyncTask(PhraseBookDAO).execute(phraseBook);}
+    void remove(PhraseBook phraseBook) {
+        new removeAsyncTask(PhraseBookDAO).execute(phraseBook);
+    }
 
-    void update(PhraseBook phraseBook) { new updateAsyncTask(PhraseBookDAO).execute(phraseBook);}
+    void update(PhraseBook phraseBook) {
+        new updateAsyncTask(PhraseBookDAO).execute(phraseBook);
+    }
 
     private static class insertAsyncTask extends AsyncTask<PhraseBook, Void, Void> {
 
         private PhraseBookDAO mAsyncTaskDao;
+
         insertAsyncTask(PhraseBookDAO dao) {
             mAsyncTaskDao = dao;
         }
+
         @Override
         protected Void doInBackground(final PhraseBook... params) {
             mAsyncTaskDao.insert(params[0]);
@@ -48,9 +53,11 @@ class PhraseBookRepository {
     private static class removeAsyncTask extends AsyncTask<PhraseBook, Void, Void> {
 
         private PhraseBookDAO mAsyncTaskDao;
+
         removeAsyncTask(PhraseBookDAO dao) {
             mAsyncTaskDao = dao;
         }
+
         @Override
         protected Void doInBackground(final PhraseBook... params) {
             mAsyncTaskDao.delete(params[0]);
@@ -61,6 +68,7 @@ class PhraseBookRepository {
     private static class updateAsyncTask extends AsyncTask<PhraseBook, Void, Void> {
 
         private PhraseBookDAO mAsyncTaskDao;
+
         updateAsyncTask(PhraseBookDAO dao) {
             mAsyncTaskDao = dao;
         }

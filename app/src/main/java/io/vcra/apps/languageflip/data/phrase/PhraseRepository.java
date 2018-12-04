@@ -13,7 +13,7 @@ public class PhraseRepository {
     private LiveData<List<Phrase>> allPhrases;
 
 
-    PhraseRepository(Application application){
+    PhraseRepository(Application application) {
         LFDB db = LFDB.Companion.getDatabase(application);
         PhraseDAO = db.phraseDAO();
         allPhrases = PhraseDAO.getAllPhrases();
@@ -23,24 +23,26 @@ public class PhraseRepository {
         return allPhrases;
     }
 
-    LiveData<List<Phrase>> getPhrasesFromBook(int phraseBookID){
+    LiveData<List<Phrase>> getPhrasesFromBook(int phraseBookID) {
         return PhraseDAO.getPhraseByBookId(phraseBookID);
     }
 
-    void insert(Phrase phrase){
+    void insert(Phrase phrase) {
         new insertAsyncTask(PhraseDAO).execute(phrase);
     }
 
-    void delete(Phrase phrase){
+    void delete(Phrase phrase) {
         new removeAsyncTask(PhraseDAO).execute(phrase);
     }
-    void update(Phrase phrase){
+
+    void update(Phrase phrase) {
         new updateAsyncTask(PhraseDAO).execute(phrase);
     }
 
     private static class insertAsyncTask extends AsyncTask<Phrase, Void, Void> {
 
         private PhraseDAO mAsyncTaskDao;
+
         insertAsyncTask(PhraseDAO dao) {
             mAsyncTaskDao = dao;
         }
@@ -56,6 +58,7 @@ public class PhraseRepository {
     private static class removeAsyncTask extends AsyncTask<Phrase, Void, Void> {
 
         private PhraseDAO mAsyncTaskDao;
+
         removeAsyncTask(PhraseDAO dao) {
             mAsyncTaskDao = dao;
         }
@@ -70,6 +73,7 @@ public class PhraseRepository {
     private static class updateAsyncTask extends AsyncTask<Phrase, Void, Void> {
 
         private PhraseDAO mAsyncTaskDao;
+
         updateAsyncTask(PhraseDAO dao) {
             mAsyncTaskDao = dao;
         }

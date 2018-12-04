@@ -49,10 +49,7 @@ class TestPhraseBookDB {
     fun deletePhraseBook() {
         val pb = PhraseBook("Phrasebook 1")
         dao.insert(pb)
-        dao.deleteAll();
+        dao.deleteAll()
         assertEquals(dao.count(), 0)
-
-
-
     }
 }

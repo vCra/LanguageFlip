@@ -4,12 +4,11 @@ import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
-
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
@@ -43,7 +42,7 @@ class PhraseBookDetailActivity : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.detail_recycler_view)
         val adapter = PhraseListAdapter(this)
         recyclerView.adapter = adapter
-        val llm =  LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val llm = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         recyclerView.layoutManager = llm
 
@@ -124,14 +123,13 @@ class PhraseBookDetailActivity : AppCompatActivity() {
         alertDialog.setTitle("Update Phrase")
         val alertDialog1 = alertDialog.create()
 
-        alertDialog1.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.rename)) {
-            _, which ->
+        alertDialog1.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.rename)) { _, which ->
             if (which == AlertDialog.BUTTON_POSITIVE) {
-                val lang1:EditText? = alertDialog1.findViewById(R.id.edit_phrase_lang1)
-                val lang2:EditText? = alertDialog1.findViewById(R.id.edit_phrase_lang2)
+                val lang1: EditText? = alertDialog1.findViewById(R.id.edit_phrase_lang1)
+                val lang2: EditText? = alertDialog1.findViewById(R.id.edit_phrase_lang2)
                 val phrase: Phrase = adapter.getFromPosition(position)
                 phrase.primaryWord = lang1?.text.toString()
-                phrase.secondaryWord= lang2?.text.toString()
+                phrase.secondaryWord = lang2?.text.toString()
                 mViewModel!!.update(phrase)
             }
         }

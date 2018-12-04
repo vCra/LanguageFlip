@@ -14,22 +14,9 @@ import java.util.List;
 
 public class PhraseListAdapter extends RecyclerView.Adapter<PhraseListAdapter.PhraseViewHolder> {
 
-    class PhraseViewHolder extends RecyclerView.ViewHolder {
-        private final TextView lang1Text;
-        private final TextView lang2Text;
-
-
-        private PhraseViewHolder(@NonNull View itemView) {
-            super(itemView);
-            lang1Text = itemView.findViewById(R.id.lang1TextView);
-            lang2Text = itemView.findViewById(R.id.lang2TextView);
-        }
-    }
-
     private final LayoutInflater inflater;
     private List<Phrase> phrases = Collections.emptyList();
-
-    public PhraseListAdapter(Context context){
+    public PhraseListAdapter(Context context) {
         inflater = LayoutInflater.from(context);
     }
 
@@ -52,7 +39,7 @@ public class PhraseListAdapter extends RecyclerView.Adapter<PhraseListAdapter.Ph
         return phrases.size();
     }
 
-    public Phrase getFromPosition(int position){
+    public Phrase getFromPosition(int position) {
         return phrases.get(position);
     }
 
@@ -60,5 +47,17 @@ public class PhraseListAdapter extends RecyclerView.Adapter<PhraseListAdapter.Ph
         this.phrases = phrases;
         notifyDataSetChanged();
 
+    }
+
+    class PhraseViewHolder extends RecyclerView.ViewHolder {
+        private final TextView lang1Text;
+        private final TextView lang2Text;
+
+
+        private PhraseViewHolder(@NonNull View itemView) {
+            super(itemView);
+            lang1Text = itemView.findViewById(R.id.lang1TextView);
+            lang2Text = itemView.findViewById(R.id.lang2TextView);
+        }
     }
 }

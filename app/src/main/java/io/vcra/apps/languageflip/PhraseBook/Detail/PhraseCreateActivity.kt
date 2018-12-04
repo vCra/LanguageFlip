@@ -2,9 +2,9 @@ package io.vcra.apps.languageflip.PhraseBook.Detail
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
@@ -29,8 +29,8 @@ class PhraseCreateActivity : AppCompatActivity() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
 
-        lblLang1.setText(prefs.getString("lang1", "Main language"))
-        lblLang2.setText(prefs.getString("lang2", "Secondary Language"))
+        lblLang1.text = prefs.getString("lang1", "Main language")
+        lblLang2.text = prefs.getString("lang2", "Secondary Language")
 
         this@PhraseCreateActivity.title = "Create a new Phrase"
 
