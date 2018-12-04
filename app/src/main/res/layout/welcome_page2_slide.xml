@@ -10,19 +10,20 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
-            android:layout_width="@dimen/slide_image_size"
-            android:layout_height="@dimen/slide_image_size"
-            android:layout_weight="2"
-            android:contentDescription="TODO"
-            android:src="@mipmap/ic_launcher" />
-
         <TextView
             android:id="@+id/text_slide_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/slide_welcome_msg_1"
+            android:text="What is language Flip?"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/text_slide_welcome2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Language Flip is an app that helps you to learn new languages!"
             android:textSize="20sp" />
     </LinearLayout>
 

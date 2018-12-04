@@ -7,7 +7,9 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="@string/title_settings_lang1" />
+        android:title="@string/title_settings_lang1"
+        android:defaultValue="English"
+        android:focusedByDefault="true"/>
 
     <EditTextPreference
         android:capitalize="words"
@@ -16,6 +18,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="@string/title_settings_lang2" />
+        android:title="@string/title_settings_lang2"
+        android:defaultValue="Klingon"/>
 
 </PreferenceScreen>

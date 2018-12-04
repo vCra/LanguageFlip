@@ -29,6 +29,9 @@ public interface PhraseBookDAO {
     @Query("SELECT * from PhraseBook ORDER BY phrase ASC")
     LiveData<List<PhraseBook>> getPhraseBooks();
 
+    @Query("SELECT COUNT(*) FROM phrasebook")
+    Integer count();
+
     @Query("DELETE FROM PhraseBook")
     void deleteAll();
 }

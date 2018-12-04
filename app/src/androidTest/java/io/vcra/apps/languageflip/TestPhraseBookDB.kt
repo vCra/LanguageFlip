@@ -21,27 +21,38 @@ import junit.framework.TestCase.assertEquals
 
 @RunWith(AndroidJUnit4::class)
 class TestPhraseBookDB {
-    private var dao: PhraseBookDAO? = null
-    private var db: LFDB? = null
+    private lateinit var dao: PhraseBookDAO
+    private lateinit var db: LFDB
 
     @Before
     fun createDb() {
         val appContext = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(appContext, LFDB::class.java).build()
-        dao = db!!.phraseBookDAO()
+        dao = db.phraseBookDAO()
     }
 
     @After
     @Throws(IOException::class)
     fun closeDb() {
-        db!!.close()
+        db.close()
     }
 
     @Test
-    @Throws(Exception::class)
     fun createPhraseBook() {
+        val count = dao.count()
         val pb = PhraseBook("Phrasebook 1")
-        dao!!.insert(pb)
-        assertEquals(dao!!.count(), 1)
+        dao.insert(pb)
+        assertEquals(dao.count(), count+1)
+    }
+
+    @Test
+    fun deletePhraseBook() {
+        val pb = PhraseBook("Phrasebook 1")
+        dao.insert(pb)
+        dao.deleteAll();
+        assertEquals(dao.count(), 0)
+
+
+
     }
 }

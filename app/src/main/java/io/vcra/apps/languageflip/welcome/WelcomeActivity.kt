@@ -43,7 +43,6 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // If we don't need to show the welcome screen, then start the Phrase Book List Activity
-
         setContentView(R.layout.welcome_activity)
         skipUnlessFirstRun()
 
@@ -101,7 +100,7 @@ class WelcomeActivity : AppCompatActivity() {
     private fun skipUnlessFirstRun() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         if (!prefs.getBoolean("firstRun", true)) {
-            //launchHomeScreen()
+            launchHomeScreen()
         } else prefs.edit().putBoolean("firstRun", false).apply()
 
     }
@@ -110,6 +109,7 @@ class WelcomeActivity : AppCompatActivity() {
         return viewPager.currentItem + i
     }
 
+    // The dot's don't really work sadly :/
     private fun setDots(currentPage: Int) {
         dotTracker = arrayListOf()
 
@@ -117,7 +117,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         for (i in 0 until dotTracker.size) {
             dotTracker[i] = TextView(this)
-            dotTracker[i].text = Html.fromHtml("&#8226;")
+            dotTracker[i].text = "O"
             dotTracker[i].textSize = 35F
             dotTracker[i].setTextColor(ContextCompat.getColor(this, R.color.colorBubbleDark))
             dots.addView(dotTracker[i])

@@ -33,4 +33,6 @@ public interface PhraseDAO {
     @Query("SELECT COUNT(*) FROM Phrase where bookId=:bookID")
     Integer getPhrasesInBook(int bookID);
 
+    @Query("DELETE FROM phrase")
+    void deleteAll();
 }

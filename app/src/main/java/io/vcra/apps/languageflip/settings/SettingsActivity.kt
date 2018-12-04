@@ -18,6 +18,7 @@ import android.text.TextUtils
 import android.view.MenuItem
 import android.support.v4.app.NavUtils
 import io.vcra.apps.languageflip.R
+import io.vcra.apps.languageflip.data.LFDB
 
 /**
  * A [PreferenceActivity] that presents a set of application settings. On
@@ -168,6 +169,8 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                     PreferenceManager
                             .getDefaultSharedPreferences(preference.context)
                             .getString(preference.key, ""))
+            LFDB.getDatabase(context = preference.context)?.phraseDAO()!!.deleteAll()
+            LFDB.getDatabase(context = preference.context)?.phraseBookDAO()!!.deleteAll()
         }
     }
 }
