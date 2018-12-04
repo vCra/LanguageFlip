@@ -21,7 +21,7 @@ class PhraseCreateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.phrase_create)
-        etLang1 = findViewById(R.id.edit_phrase_lang2)
+        etLang1 = findViewById(R.id.edit_phrase_lang1)
         etLang2 = findViewById(R.id.edit_phrase_lang2)
         lblLang1 = findViewById(R.id.label_lang1)
         lblLang2 = findViewById(R.id.label_lang2)
