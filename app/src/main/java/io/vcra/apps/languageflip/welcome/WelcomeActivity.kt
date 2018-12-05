@@ -130,9 +130,7 @@ class WelcomeActivity : AppCompatActivity() {
         override fun onPageSelected(position: Int) {
             setDots(position)
 
-            // changing the next button text 'NEXT' / 'GOT IT'
             if (position == layouts.size - 1) {
-                // last page. make button text to GOT IT
                 btnNext.text = getString(R.string.begin)
                 btnSkip.visibility = View.GONE
                 lang1Edit = findViewById(R.id.editLang1)

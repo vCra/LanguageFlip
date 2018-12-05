@@ -56,12 +56,12 @@ class PhraseBookDetailActivity : AppCompatActivity() {
                         popup.menuInflater.inflate(R.menu.phrase_book_detail_item_menu, popup.menu)
                         popup.setOnMenuItemClickListener { item ->
                             //TODO: Do this by not using the titles but instead the ID's
-                            if (item.title == getString(R.string.rem_phrase)) {
-                                // onRemoveItem(adapter, position)
-                            } else if (item.title == getString(R.string.ren_phrase)) {
-                                onUpdateItem(adapter, position)
-                            } else {
-                                Log.e("lf", "Context menu item selected which is not implemented for")
+                            when {
+                                item.title == getString(R.string.rem_phrase) -> {
+                                    // onRemoveItem(adapter, position)
+                                }
+                                item.title == getString(R.string.ren_phrase) -> onUpdateItem(adapter, position)
+                                else -> Log.e("lf", "Context menu item selected which is not implemented for")
                             }
                             true
                         }

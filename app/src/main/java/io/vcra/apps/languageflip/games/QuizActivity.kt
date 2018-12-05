@@ -51,7 +51,7 @@ class QuizActivity : AppCompatActivity() {
         editBox.setText("")
     }
 
-
+t
     private fun nextQuestion() {
         //Check if we have run out of questions
         if (quizHelper.round == quizHelper.numberOfRounds) {
